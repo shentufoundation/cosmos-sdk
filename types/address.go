@@ -649,6 +649,12 @@ func GetFromBech32(bech32str, prefix string) ([]byte, error) {
 		return nil, err
 	}
 
+	//This is a temporary solution, in order to be compatible with addresses starting with certik
+	//This will be deleted in the future
+	if strings.HasPrefix(hrp, "certik") {
+		hrp = "shentu" + hrp[6:]
+	}
+
 	if hrp != prefix {
 		return nil, fmt.Errorf("invalid Bech32 prefix; expected %s, got %s", prefix, hrp)
 	}
