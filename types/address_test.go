@@ -486,6 +486,10 @@ func (s *addressTestSuite) TestGetFromBech32() {
 	s.Require().Error(err)
 	s.Require().Equal("invalid Bech32 prefix; expected x, got cosmos", err.Error())
 
+	cfg := types.GetConfig()
+	cfg.SetBech32PrefixForAccount("shentu", "shentupub")
+	cfg.Seal()
+
 	_, err = types.GetFromBech32("certik1vgpzxfmw8up2gugglj50t2uddlpd5shdwedrlc", "shentu")
 	s.Require().NoError(err)
 
