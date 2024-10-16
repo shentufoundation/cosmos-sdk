@@ -437,3 +437,8 @@ func (k Keeper) DeleteAllValidatorSlashEvents(ctx context.Context) {
 		store.Delete(iter.Key())
 	}
 }
+
+// GetFeePool get the global fee pool distribution info
+func (k Keeper) GetFeePool(ctx context.Context) (types.FeePool, error) {
+	return k.FeePool.Get(ctx)
+}
